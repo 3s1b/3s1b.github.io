@@ -36,18 +36,9 @@
                 id="scaleDownMixin"
                 animation__scale2="property: position; to:0 1.8 -5; dur: 99999; easing: linear; loop: false"
               ></a-mixin>-->
-              <!-- <a-mixin id="fadeInText" animation__showText="property: opacity; dur: 500; to: 1; startEvents: startFadeIn; pauseEvents: startFadeOut"></a-mixin>
-                <a-mixin id="fadeOutText" animation__hideText="property: opacity; dur: 500; to: 0; startEvents: startFadeOut; pauseEvents: startFadeIn"></a-mixin> -->
 
-              <!-- SZENE Um 10 Grad gedreht, damit man nicht initial auf den Planeten schaut -->
               <a-entity rotation="0 -10 0">
-                <!-- Gelber Planet:
-                         - über mixin werden die beiden skalierungsfunktionen aus den Variablen importiert
-                         - animation__scale funktion wird bei mouseenter aufgerufen
-                         - animation__scale2 wird bei mouseleave aufgerufen
-                         - proxy-event__enter wird bei mouseenter aufgerufen und startet die funktion "startFadeIn" im "#exampleText"
-                         - proxy-event__leave wird bei mouseleave aufgerufen und startet die funktion "startFadeOut" im "#exampleText"
-                    -->
+
                 <a-sphere
                   id="yellowBall"
                   color="yellow"
@@ -62,12 +53,6 @@
                   proxy-event__leave="event: mouseleave; to: #exampleText; as: startFadeOut"
                 ></a-sphere>
 
-                <!-- Text:
-                        - über mixin werden die beiden Funktionen "fadeInText" und "fadeOutText" importiert. Diese werden später in Yellowball bei mouseenter/ mouseleave aufgerufen
-                    -->
-                <!-- <a-text id="exampleText" class="textbox" text="value: Merkur; align: center; color:#FFF" opacity="0" scale="0.8 0.8 0.8"
-                        position="0 1.9 -1" mixin="fadeInText fadeOutText">
-                    </a-text> -->
               </a-entity>
 
               <!-- CAMERA -->
@@ -78,7 +63,5 @@
               <!-- SKY -->
               <a-sky color="#00001c"></a-sky>
             </a-scene>
-
-            <script src="js/main.js"></script>
           </body>
         </html>
