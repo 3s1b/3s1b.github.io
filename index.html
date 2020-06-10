@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 
-<!--Arne Blau-->
-<!--Susanne Grün-->
-<!--Feli dunkelblau-->
-<!--Chris magenta -->
-<!--Fiona gelb-->
-
-<!-- Felix Cyan -->
+        <!--Arne blau-->
+        <!--Susanne grün-->
+        <!--Feli dunkelblau-->
+        <!--Chris magenta -->
+        <!--Fiona gelb-->
+        <!-- Felix cyn -->
 
 
 <html>
 <head>
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+  <!-- A-FRAME SCRIPTS -->
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-entity-generator-component@^3.0.0/dist/aframe-entity-generator-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 
     <script type="text/javascript">
 
@@ -28,15 +35,17 @@
     });
 
     </script>
-  </head>
+
+</head>
 
 
 
 <body>
- <a-scene id="main-scene">
+
+        <a-scene id="main-scene">
 
 
-   <!-- Cursor etablieren -->
+      <!-- Cursor etablieren -->
 
         <a-entity camera look-controls controls wasd-controls>
           <a-entity cursor
@@ -52,52 +61,51 @@
         </a-entity>
 
 
-   <!-- Die Kugeln -->
+        <!-- Die Kugeln -->
+
+        <!-- neue Kugel, die klickbar ist -->
+        <a-sphere
+          class="clickable"
+          cursor-listener
+          color="#AAAAA"
+          position="6 7 -10"
+          rotation="0 60 0"
+          radius="5">
+        </a-sphere>
 
 
-   <!-- neue Kugel, die klickbar ist -->
-  <a-sphere
-        class="clickable"
-        cursor-listener
-        color="#AAAAA"
-        position="6 7 -10"
-        rotation="0 60 0"
-        radius="5">
-  </a-sphere>
+        <!-- die "alten" Kugeln -->
 
+        <a-sphere
+          position="20 5 10"
+          rotation="0 60 0"
+          color="yellow"
+          radius="5">
+        </a-sphere>
 
-<!-- die "alten" Kugeln
+        <a-sphere
+          position="0 0 0"
+          rotation="0 0 0"
+          color="yellow"
+          radius="10">
+        </a-sphere>
 
-  <a-sphere
-    position="20 5 10"
-    rotation="0 60 0"
-    color="yellow"
-    radius="5">
-  </a-sphere>
+        <a-sphere
+          position="6 5 -10"
+          rotation="0 60 0"
+          color="#aaaaaa"
+          radius="5">
+        </a-sphere>
 
-  <a-sphere
-    position="0 0 0"
-    rotation="0 0 0"
-    color="yellow"
-    radius="10">
-  </a-sphere>
+        <a-sphere
+          position="-10 5 10"
+          rotation="0 60 0"
+          color="#aaaaaa"
+          radius="5">
+        </a-sphere>
 
-  <a-sphere
-    position="6 5 -10"
-    rotation="0 60 0"
-    color="#aaaaaa"
-    radius="5">
-  </a-sphere>
-
-  <a-sphere
-    position="-10 5 10"
-    rotation="0 60 0"
-    color="#aaaaaa"
-    radius="5">
-  </a-sphere>
-
-  <a-sphere
-    position="30 5 -20"
+        <a-sphere
+        position="30 5 -20"
     rotation="0 60 0"
     color="#aaaaaa"
     radius="5">
@@ -119,19 +127,8 @@
 
 
 
+<!-- klickbarer Link zum Portal zu Raum 2
 
-
-
-<!-- klickbarer Link
-
-        <a-link class="clickable" href="someOtherWebpage.html" position="-2 1 -1" title="Some Other Webpage" image="#scene_2"></a-link>
-
--->
-
-
-
-<!-- Objekt wird durch Kamera look getriggert
-
-<a-entity camera look-controls controls wasd-controls>           <a-entity cursor             animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"             animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"             animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"             cursor="fuse: true;"             position="0 0 -1"             geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"             material="color: blue; shader: flat"             raycaster="far: 20; interval: 1000; objects: .clickable">           </a-entity>         </a-entity>
+        <a-link class="clickable" href="RAUM2.html" position="-2 1 -1" title="PORTAL ZU RAUM 2" > </a-link>
 
 -->
