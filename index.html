@@ -4,7 +4,7 @@
         <!--Feli dunkelblau-->
         <!--Chris magenta -->
         <!--Fiona gelb-->
-        <!-- Felix cyn -->
+        <!-- Felix cyan -->
 
 
         <!DOCTYPE html>
@@ -21,6 +21,23 @@
             <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
             <script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
             <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+
+            <script type="text/javascript">
+
+            AFRAME.registerComponent('color-changer', {
+              init: function () {
+                this.el.addEventListener('mouseenter', function (evt) {
+                var x = this.object3D.position.z;
+                console.log(x);
+                /*this.object3D.position.z = this.object3D.position.z + 10;*/
+                this.setAttribute('color', 'rgb(0,100,0)');
+                });
+              }
+            });
+
+
+            </script>
+
           </head>
 
           <body>
@@ -30,16 +47,17 @@
                 id="scaleUpMixin"
                 animation__scale="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
-              <<a-mixin
+              <a-mixin
                 id="scaleDownMixin"
                 animation__scale2="property: position; to:0 1.8 -5; dur: 99999; easing: linear; loop: false"
-              ></a-mixin>-->
+              ></a-mixin>
 
               <a-entity rotation="0 -10 0">
 
                 <a-sphere
+                  color-changer
                   id="yellowBall"
-                  color="yellow"
+                  color="rgb(100, 0, 0)"
                   opacity="1"
                   position="0 1.8 -5"
                   radius="0.5"
@@ -47,8 +65,6 @@
                   mixin="scaleUpMixin scaleDownMixin"
                   animation__scale="startEvents: mouseenter;"
                   animation__scale2="startEvents: mouseleave;"
-                  proxy-event__enter="event: mouseenter; to: #exampleText; as: startFadeIn"
-                  proxy-event__leave="event: mouseleave; to: #exampleText; as: startFadeOut"
                 ></a-sphere>
 
               </a-entity>
@@ -61,5 +77,7 @@
               <!-- SKY -->
               <a-sky color="#00001c"></a-sky>
             </a-scene>
+
+
           </body>
         </html>
