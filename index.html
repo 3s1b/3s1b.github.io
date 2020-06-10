@@ -8,127 +8,78 @@
         <!-- Felix cyn -->
 
 
-<html>
-<head>
+        <!DOCTYPE html>
+        <html class="no-js" lang="">
+          <head>
+            <!-- METATAGS -->
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <title>Text on hover test</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- A-FRAME SCRIPTS -->
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
-    <script src="https://unpkg.com/aframe-entity-generator-component@^3.0.0/dist/aframe-entity-generator-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+            <link rel="stylesheet" href="css/main.css" />
 
-    <script type="text/javascript">
+            <!-- A-FRAME SCRIPTS -->
+            <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+            <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
+            <script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
+            <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+          </head>
 
-    AFRAME.registerComponent('cursor-listener', {
-      init: function () {
-        var lastIndex = -1;
-        var COLORS = ['red', 'green', 'blue'];
-        this.el.addEventListener('click', function (evt) {
-        lastIndex = (lastIndex + 1) % COLORS.length;
-        this.setAttribute('material', 'color', COLORS[lastIndex]);
-        console.log('I was clicked at: ', evt.detail.intersection.point);
-        });
-      }
-    });
+          <body>
+            <a-scene>
+              <!-- Animationen -->
+              <a-mixin
+                id="scaleUpMixin"
+                animation__scale="property: scale; dur: 500; easing: easeInOutQuad; to: 1.5 1.5 1.5;"
+              ></a-mixin>
+              <a-mixin
+                id="scaleDownMixin"
+                animation__scale2="property: scale; dur: 500; easing: easeInOutQuad; to: 1 1 1;"
+              ></a-mixin>
+              <!-- <a-mixin id="fadeInText" animation__showText="property: opacity; dur: 500; to: 1; startEvents: startFadeIn; pauseEvents: startFadeOut"></a-mixin>
+                <a-mixin id="fadeOutText" animation__hideText="property: opacity; dur: 500; to: 0; startEvents: startFadeOut; pauseEvents: startFadeIn"></a-mixin> -->
 
-    </script>
+              <!-- SZENE Um 10 Grad gedreht, damit man nicht initial auf den Planeten schaut -->
+              <a-entity rotation="0 -10 0">
+                <!-- Gelber Planet:
+                         - über mixin werden die beiden skalierungsfunktionen aus den Variablen importiert
+                         - animation__scale funktion wird bei mouseenter aufgerufen
+                         - animation__scale2 wird bei mouseleave aufgerufen
+                         - proxy-event__enter wird bei mouseenter aufgerufen und startet die funktion "startFadeIn" im "#exampleText"
+                         - proxy-event__leave wird bei mouseleave aufgerufen und startet die funktion "startFadeOut" im "#exampleText"
+                    -->
+                <a-sphere
+                  id="yellowBall"
+                  color="yellow"
+                  opacity="1"
+                  position="0 1.8 -5"
+                  radius="0.5"
+                  scale="1 1 1"
+                  mixin="scaleUpMixin scaleDownMixin"
+                  animation__scale="startEvents: mouseenter;"
+                  animation__scale2="startEvents: mouseleave;"
+                  proxy-event__enter="event: mouseenter; to: #exampleText; as: startFadeIn"
+                  proxy-event__leave="event: mouseleave; to: #exampleText; as: startFadeOut"
+                ></a-sphere>
 
-</head>
+                <!-- Text:
+                        - über mixin werden die beiden Funktionen "fadeInText" und "fadeOutText" importiert. Diese werden später in Yellowball bei mouseenter/ mouseleave aufgerufen
+                    -->
+                <!-- <a-text id="exampleText" class="textbox" text="value: Merkur; align: center; color:#FFF" opacity="0" scale="0.8 0.8 0.8"
+                        position="0 1.9 -1" mixin="fadeInText fadeOutText">
+                    </a-text> -->
+              </a-entity>
 
+              <!-- CAMERA -->
+              <a-camera camera look-controls>
+                <a-cursor material="color: white; shader: flat"></a-cursor>
+              </a-camera>
 
+              <!-- SKY -->
+              <a-sky color="#00001c"></a-sky>
+            </a-scene>
 
-<body>
-
-        <a-scene id="main-scene">
-
-
-      <!-- Cursor etablieren -->
-
-        <a-entity camera look-controls controls wasd-controls>
-          <a-entity cursor
-            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-            cursor="fuse: true;"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
-            material="color: grey; shader: flat"
-            raycaster="far: 20; interval: 1000; objects: .clickable">
-          </a-entity>
-        </a-entity>
-
-
-        <!-- Die Kugeln -->
-
-        <!-- neue Kugel, die klickbar ist -->
-        <a-sphere
-          class="clickable"
-          cursor-listener
-          color="#AAAAA"
-          position="6 7 -10"
-          rotation="0 60 0"
-          radius="5">
-        </a-sphere>
-
-
-        <!-- die "alten" Kugeln -->
-
-        <a-sphere
-          position="20 5 10"
-          rotation="0 60 0"
-          color="yellow"
-          radius="5">
-        </a-sphere>
-
-        <a-sphere
-          position="0 0 0"
-          rotation="0 0 0"
-          color="yellow"
-          radius="10">
-        </a-sphere>
-
-        <a-sphere
-          position="6 5 -10"
-          rotation="0 60 0"
-          color="#aaaaaa"
-          radius="5">
-        </a-sphere>
-
-        <a-sphere
-          position="-10 5 10"
-          rotation="0 60 0"
-          color="#aaaaaa"
-          radius="5">
-        </a-sphere>
-
-        <a-sphere
-        position="30 5 -20"
-    rotation="0 60 0"
-    color="#aaaaaa"
-    radius="5">
-  </a-sphere> -->
-
-
-  <a-plane position="0 0 0" rotation="-90 0 0" width="1000" height="1000" color="#7BC8A4"></a-plane>
-
-  <a-sky color="#eeeeee"></a-sky>
-
- </a-scene>
-
- </body>
-</html>
-
-
-
-
-
-
-
-<!-- klickbarer Link zum Portal zu Raum 2
-
-        <a-link class="clickable" href="RAUM2.html" position="-2 1 -1" title="PORTAL ZU RAUM 2" > </a-link>
-
--->
+            <script src="js/main.js"></script>
+          </body>
+        </html>
