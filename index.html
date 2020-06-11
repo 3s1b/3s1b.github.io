@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
         <html class="no-js" lang="">
           <head>
             <!-- METATAGS -->
@@ -18,12 +18,12 @@
             AFRAME.registerComponent('color-changer', {
               init: function () {
                 this.el.addEventListener('mouseenter', function (evt) {
-                var x = this.object3D.position.z;
+                /*var x = this.object3D.position.z;
                 var color = this.getAttribute('color');
                 console.log(x);
                 console.log(color);
-                /*this.object3D.position.z = this.object3D.position.z + 10;*/
-                this.setAttribute('color', 'rgb(0,100,0)');
+                this.object3D.position.z = this.object3D.position.z + 10;
+                this.setAttribute('color', 'rgb(0,100,0)');*/
                 });
               }
             });
@@ -38,15 +38,19 @@
               <!-- Animationen -->
               <a-mixin
                 id="scaleUpMixin"
-                animation__scale="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: false"
+                animation__scale="property: position; to: 1 10 -5; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
+                id="scaleDownMixin"
+                animation__scale2="property: position; to:0 0.5 -5; dur: 99999; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
+                id="changeColorback"
+                animation__color2="property: color; to: #aaaaaa; dur: 99999; easing: linear; loop: false"
               ></a-mixin>
               <a-mixin
                 id="changeColor"
                 animation__color="property: color; to: #ffb800; dur: 2000; easing: linear; loop: false"
-              ></a-mixin>
-              <a-mixin
-                id="scaleDownMixin"
-                animation__scale2="property: position; to:0 1.8 -5; dur: 99999; easing: linear; loop: false"
               ></a-mixin>
 
               <a-entity rotation="0 -10 0">
@@ -56,13 +60,14 @@
                   id="yellowBall"
                   color="#aaaaaa"
                   opacity="1"
-                  position="0 1.8 -5"
+                  position="0 0.5 -5"
                   radius="0.5"
                   scale="1 1 1"
-                  mixin="scaleUpMixin scaleDownMixin changeColor"
+                  mixin="scaleUpMixin scaleDownMixin changeColor changeColorback"
                   animation__scale="startEvents: mouseenter;"
                   animation__color="startEvents: mouseenter;"
                   animation__scale2="startEvents: mouseleave;"
+                  animation__color2="startEvents: mouseleave;"
                 ></a-sphere>
 
               </a-entity>
@@ -73,7 +78,8 @@
               </a-camera>
 
               <!-- SKY -->
-              <a-sky color="#00001c"></a-sky>
+              <a-sky color="#00001c" radius="15" ></a-sky>
+              <a-plane color="grey" height="30" width="30" rotation="-90 0 0"></a-plane>
             </a-scene>
 
 
