@@ -1,10 +1,6 @@
-<!-- Mitglieder von 3s1b-->
-        <!--Arne blau-->
-        <!--Susanne grün-->
-        <!--Feli dunkelblau-->
-        <!--Chris magenta -->
-        <!--Fiona gelb-->
-        <!-- Felix cyan -->
+
+Fiona -> Orange
+
 
 
         <!DOCTYPE html>
@@ -28,7 +24,9 @@
               init: function () {
                 this.el.addEventListener('mouseenter', function (evt) {
                 var x = this.object3D.position.z;
+                var color = this.getAttribute('color');
                 console.log(x);
+                console.log(color);
                 /*this.object3D.position.z = this.object3D.position.z + 10;*/
                 this.setAttribute('color', 'rgb(0,100,0)');
                 });
@@ -48,6 +46,10 @@
                 animation__scale="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
               <a-mixin
+                id="changeColor"
+                animation__color="property: color; to: #ffb800; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
                 id="scaleDownMixin"
                 animation__scale2="property: position; to:0 1.8 -5; dur: 99999; easing: linear; loop: false"
               ></a-mixin>
@@ -57,13 +59,14 @@
                 <a-sphere
                   color-changer
                   id="yellowBall"
-                  color="rgb(100, 0, 0)"
+                  color="#aaaaaa"
                   opacity="1"
                   position="0 1.8 -5"
                   radius="0.5"
                   scale="1 1 1"
-                  mixin="scaleUpMixin scaleDownMixin"
+                  mixin="scaleUpMixin scaleDownMixin changeColor"
                   animation__scale="startEvents: mouseenter;"
+                  animation__color="startEvents: mouseenter;"
                   animation__scale2="startEvents: mouseleave;"
                 ></a-sphere>
 
