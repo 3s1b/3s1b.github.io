@@ -189,8 +189,12 @@
                 <a-cursor material="color: white; shader: flat"></a-cursor>
               </a-camera>
 
+              <a-assets>
+                <img id="sky" src="gradient.jpg">
+              </a-assets>
+
               <!-- SKY -->
-              <a-sky src="gradient.jpg" repeat="0" radius="15" ></a-sky>
+              <a-sky src="#sky" repeat="0" radius="15" ></a-sky>
               <a-plane color="grey" height="30" width="30" rotation="-90 0 0"></a-plane>
             </a-scene>
 
