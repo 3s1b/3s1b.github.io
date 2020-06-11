@@ -13,29 +13,52 @@
             <script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
             <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
 
-            <script type="text/javascript">
 
-            AFRAME.registerComponent('color-changer', {
+          <!--  <script type="text/javascript">
+
+            AFRAME.registerComponent('steigen-fallen', {
+
+              schema:{
+                steigen:{type:'number'}
+              },
+
               init: function () {
+                var steigen = this.data.steigen;
+
                 this.el.addEventListener('mouseenter', function (evt) {
-                /*var x = this.object3D.position.z;
-                var color = this.getAttribute('color');
-                console.log(x);
-                console.log(color);
-                this.object3D.position.z = this.object3D.position.z + 10;
-                this.setAttribute('color', 'rgb(0,100,0)');*/
-                });
+                  el.setAttribute('steigen', data.steigen)
+                  /*
+                  var y = this.object3D.position.y;
+                  this.object3D.position.y = y+0.1;*/
+                })
+
+
+
+              },
+
+              tick: function (time, timeDelta) {
+
+                console.log(this.data.steigen);
+
               }
+
             });
 
 
-            </script>
+          </script>-->
 
           </head>
 
           <body>
             <a-scene>
-              <!-- Animationen -->
+
+              <a-mixin
+                id="changeColorback"
+                animation__colorb="property: color; to: #aaaaaa; dur: 99999; easing: linear; loop: false"
+              ></a-mixin>
+
+
+              <!-- Animationen erste Kugel-->
               <a-mixin
                 id="scaleUpMixin"
                 animation__scale="property: position; to: 1 10 -5; dur: 2000; easing: linear; loop: false"
@@ -44,19 +67,63 @@
                 id="scaleDownMixin"
                 animation__scale2="property: position; to:0 0.5 -5; dur: 99999; easing: linear; loop: false"
               ></a-mixin>
-              <a-mixin
-                id="changeColorback"
-                animation__color2="property: color; to: #aaaaaa; dur: 99999; easing: linear; loop: false"
-              ></a-mixin>
+
               <a-mixin
                 id="changeColor"
                 animation__color="property: color; to: #ffb800; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
 
+              <!-- Animationen zweite Kugel-->
+              <a-mixin
+                id="scaleUpMixin2"
+                animation__scale2="property: position; to: 10 10 -3; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
+                id="scaleDownMixin2"
+                animation__scale2.2="property: position; to:10 0.5 -3; dur: 99999; easing: linear; loop: false"
+              ></a-mixin>
+
+              <a-mixin
+                id="changeColor2"
+                animation__color2="property: color; to: #ff3300; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+
+              <!-- Animationen dritte Kugel-->
+              <a-mixin
+                id="scaleUpMixin3"
+                animation__scale3="property: position; to: -4 10 3; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
+                id="scaleDownMixin3"
+                animation__scale2.3="property: position; to:-4 0.5 3; dur: 99999; easing: linear; loop: false"
+              ></a-mixin>
+
+              <a-mixin
+                id="changeColor3"
+                animation__color3="property: color; to: #33cc33; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+
+              <!-- Animationen vierte Kugel-->
+              <a-mixin
+                id="scaleUpMixin4"
+                animation__scale4="property: position; to: -8 10 -1.5; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+              <a-mixin
+                id="scaleDownMixin4"
+                animation__scale2.4="property: position; to:-8 0.5 -1.5; dur: 99999; easing: linear; loop: false"
+              ></a-mixin>
+
+              <a-mixin
+                id="changeColor4"
+                animation__color4="property: color; to: #0066ff; dur: 2000; easing: linear; loop: false"
+              ></a-mixin>
+
+
+
               <a-entity rotation="0 -10 0">
 
                 <a-sphere
-                  color-changer
+                  steigen-fallen
                   id="yellowBall"
                   color="#aaaaaa"
                   opacity="1"
@@ -67,7 +134,52 @@
                   animation__scale="startEvents: mouseenter;"
                   animation__color="startEvents: mouseenter;"
                   animation__scale2="startEvents: mouseleave;"
-                  animation__color2="startEvents: mouseleave;"
+                  animation__colorb="startEvents: mouseleave;"
+                ></a-sphere>
+
+                <a-sphere
+                  steigen-fallen
+                  id="redBall"
+                  color="#aaaaaa"
+                  opacity="1"
+                  position="10 0.5 -3"
+                  radius="0.5"
+                  scale="1 1 1"
+                  mixin="scaleUpMixin2 scaleDownMixin2 changeColor2 changeColorback"
+                  animation__scale2="startEvents: mouseenter;"
+                  animation__color2="startEvents: mouseenter;"
+                  animation__scale2.2="startEvents: mouseleave;"
+                  animation__colorb="startEvents: mouseleave;"
+                ></a-sphere>
+
+                <a-sphere
+                  steigen-fallen
+                  id="greenBall"
+                  color="#aaaaaa"
+                  opacity="1"
+                  position="-4 0.5 3"
+                  radius="0.5"
+                  scale="1 1 1"
+                  mixin="scaleUpMixin3 scaleDownMixin3 changeColor3 changeColorback"
+                  animation__scale3="startEvents: mouseenter;"
+                  animation__color3="startEvents: mouseenter;"
+                  animation__scale2.3="startEvents: mouseleave;"
+                  animation__colorb="startEvents: mouseleave;"
+                ></a-sphere>
+
+                <a-sphere
+                  steigen-fallen
+                  id="blueBall"
+                  color="#aaaaaa"
+                  opacity="1"
+                  position="-8 0.5 -1.5"
+                  radius="0.5"
+                  scale="1 1 1"
+                  mixin="scaleUpMixin4 scaleDownMixin4 changeColor4 changeColorback"
+                  animation__scale4="startEvents: mouseenter;"
+                  animation__color4="startEvents: mouseenter;"
+                  animation__scale2.4="startEvents: mouseleave;"
+                  animation__colorb="startEvents: mouseleave;"
                 ></a-sphere>
 
               </a-entity>
