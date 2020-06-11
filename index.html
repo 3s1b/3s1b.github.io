@@ -14,21 +14,17 @@
             <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
 
 
-          <!--  <script type="text/javascript">
+        <!---<script type="text/javascript">
+
+          var steigen = false;
 
             AFRAME.registerComponent('steigen-fallen', {
 
-              schema:{
-                steigen:{type:'number'}
-              },
-
               init: function () {
-                var steigen = this.data.steigen;
 
                 this.el.addEventListener('mouseenter', function (evt) {
-                  el.setAttribute('steigen', data.steigen)
-                  /*
-                  var y = this.object3D.position.y;
+                  steigen = true;
+                  /*var y = this.object3D.position.y;
                   this.object3D.position.y = y+0.1;*/
                 })
 
@@ -38,14 +34,57 @@
 
               tick: function (time, timeDelta) {
 
-                console.log(this.data.steigen);
+                console.log(steigen);
 
               }
 
             });
 
 
-          </script>-->
+          </script>--->
+
+ <script type="text/javascript">
+
+
+
+
+          AFRAME.registerComponent('hoehe', {
+
+            tick: function (time, timeDelta) {
+              let hoehe1K = document.querySelector('#yellowBall').object3D.position.y;
+              let hoehe2K = document.querySelector('#redBall').object3D.position.y;
+              let hoehe3K = document.querySelector('#greenBall').object3D.position.y;
+              let hoehe4K = document.querySelector('#blueBall').object3D.position.y;
+
+
+            if (hoehe1K>=2 && hoehe2K>=2 && hoehe3K>=2 && hoehe4K>=2){
+              let a = hoehe1K;
+              let b = hoehe2K;
+              let c = hoehe3K;
+              let d = hoehe4K;
+
+
+              if(a > Math.max(b,c,d)){
+                document.querySelector('#sky').setAttribute('color', '#ffb800');
+              } else if (b > Math.max(a,c,d)){
+                document.querySelector('#sky').setAttribute('color', '#ff3300');
+              } else if (c > Math.max(a,b,d)){
+                document.querySelector('#sky').setAttribute('color', '#33cc33');
+              } else if (d > Math.max(a,b,c)){
+                document.querySelector('#sky').setAttribute('color', '#0066ff');
+              }
+
+
+
+            }
+
+
+
+
+          }
+          });
+
+</script>
 
           </head>
 
@@ -80,7 +119,7 @@
               ></a-mixin>
               <a-mixin
                 id="scaleDownMixin2"
-                animation__scale2.2="property: position; to:10 0.8 -3; dur: 7000; easing: linear; loop: false"
+                animation__scale2.2="property: position; to:10 0.8 -3; dur: 8000; easing: linear; loop: false"
               ></a-mixin>
 
               <a-mixin
@@ -95,7 +134,7 @@
               ></a-mixin>
               <a-mixin
                 id="scaleDownMixin3"
-                animation__scale2.3="property: position; to:-4 0.8 3; dur: 6000; easing: linear; loop: false"
+                animation__scale2.3="property: position; to:-4 0.8 3; dur: 7000; easing: linear; loop: false"
               ></a-mixin>
 
               <a-mixin
@@ -110,7 +149,7 @@
               ></a-mixin>
               <a-mixin
                 id="scaleDownMixin4"
-                animation__scale2.4="property: position; to:-8 0.8 -1.5; dur: 65000; easing: linear; loop: false"
+                animation__scale2.4="property: position; to:-8 0.8 -1.5; dur: 9900; easing: linear; loop: false"
               ></a-mixin>
 
               <a-mixin
@@ -189,13 +228,11 @@
                 <a-cursor material="color: white; shader: flat"></a-cursor>
               </a-camera>
 
-              <a-assets>
-                <img id="sky" src="gradient.jpg">
-              </a-assets>
+
 
               <!-- SKY -->
-              <a-sky src="#sky" repeat="0" radius="15" ></a-sky>
-              <a-plane color="grey" height="30" width="30" rotation="-90 0 0"></a-plane>
+              <a-sky id="sky" color:"#efefef" repeat="0" radius="15" ></a-sky>
+              <a-plane hoehe color="#efefef" height="30" width="30" rotation="-90 0 0"></a-plane>
             </a-scene>
 
 
