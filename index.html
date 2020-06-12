@@ -58,7 +58,6 @@
 
 
 
-
             if (hoehe1K>=2 && hoehe2K>=2 && hoehe3K>=2 && hoehe4K>=2){
               let a = hoehe1K;
               let b = hoehe2K;
@@ -68,12 +67,20 @@
 
               if(a > Math.max(b,c,d)){
                 document.querySelector('#skyColor').setAttribute('color', '#A5F4CD');
+                document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #A5F4CD');
+                document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/mint.html');
               } else if (b > Math.max(a,c,d)){
                 document.querySelector('#skyColor').setAttribute('color', '#DCA1C1');
+                document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #DCA1C1');
+                document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/rosa.html');
               } else if (c > Math.max(a,b,d)){
                 document.querySelector('#skyColor').setAttribute('color', '#4814CC');
+                document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #4814CC');
+                document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/blau.html');
               } else if (d > Math.max(a,b,c)){
                 document.querySelector('#skyColor').setAttribute('color', '#FF582C');
+                document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #FF582C');
+                document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/orange.html');
               }
 
 
@@ -92,6 +99,8 @@
 
           <body>
             <a-scene id="mainScene" fog="type: linear; far:20; color: #ebebeb6;">
+
+              <a-link id="farbPortal" href="#" title="." position="12 6 0" rotation="-12.000000000000002 90 0" geometry="primitive: circle; segments: 64" material="shader: portal; side: double; borderEnabled: 0;" link="backgroundColor: #000"></a-link>
 
               <a-mixin
                 id="changeColorback"
@@ -234,7 +243,7 @@
               <!-- SKY -->
               <a-sky id="skyColor" color="#000" opacity="0.8"  radius="14" ></a-sky>
               <a-sky src="background.jpeg" radius="15" ></a-sky>
-              <a-plane hoehe color="#aaa" height="30" width="30" rotation="-90 0 0"></a-plane>
+              <a-plane hoehe color="#999" height="30" width="30" rotation="-90 0 0"></a-plane>
             </a-scene>
 
 
