@@ -69,18 +69,22 @@
                 document.querySelector('#skyColor').setAttribute('color', '#A5F4CD');
                 document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #A5F4CD');
                 document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/mint.html');
+                console.log(document.querySelector('#farbPortal'));
               } else if (b > Math.max(a,c,d)){
                 document.querySelector('#skyColor').setAttribute('color', '#DCA1C1');
                 document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #DCA1C1');
                 document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/rosa.html');
+                console.log(document.querySelector('#farbPortal'));
               } else if (c > Math.max(a,b,d)){
                 document.querySelector('#skyColor').setAttribute('color', '#4814CC');
                 document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #4814CC');
                 document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/blau.html');
+                console.log(document.querySelector('#farbPortal'));
               } else if (d > Math.max(a,b,c)){
                 document.querySelector('#skyColor').setAttribute('color', '#FF582C');
                 document.querySelector('#farbPortal').setAttribute('link', 'backgroundColor: #FF582C');
                 document.querySelector('#farbPortal').setAttribute('href', 'https://benjamintrke.github.io/orange.html');
+                console.log(document.querySelector('#farbPortal'));
               }
 
 
@@ -100,7 +104,7 @@
           <body>
             <a-scene id="mainScene" fog="type: linear; far:20; color: #ebebeb6;">
 
-              <a-link id="farbPortal" href="#" title="." position="12 6 0" rotation="-12.000000000000002 90 0" geometry="primitive: circle; segments: 64" material="shader: portal; side: double; borderEnabled: 0;" link="backgroundColor: #000"></a-link>
+              <a-link id="farbPortal" class="clickable" href="" title="" position="12 6 0" rotation="-12.000000000000002 90 0" geometry="primitive: circle; segments: 64" material="shader: portal; side: double; borderEnabled: 0;" link="backgroundColor: #000"></a-link>
 
               <a-mixin
                 id="changeColorback"
@@ -173,6 +177,7 @@
               <a-entity rotation="0 -10 0">
 
                 <a-sphere
+                class="clickable"
                   steigen-fallen
                   id="yellowBall"
                   color="#eee"
@@ -188,6 +193,7 @@
                 ></a-sphere>
 
                 <a-sphere
+                class="clickable"
                   steigen-fallen
                   id="redBall"
                   color="#eee"
@@ -203,6 +209,7 @@
                 ></a-sphere>
 
                 <a-sphere
+                class="clickable"
                   steigen-fallen
                   id="greenBall"
                   color="#eee"
@@ -218,6 +225,7 @@
                 ></a-sphere>
 
                 <a-sphere
+                class="clickable"
                   steigen-fallen
                   id="blueBall"
                   color="#eee"
@@ -236,7 +244,25 @@
 
               <!-- CAMERA -->
               <a-camera camera look-controls>
-                <a-cursor material="color: white; shader: flat"></a-cursor>
+                <a-cursor
+                  material="color: white; shader: flat"
+                  raycaster="interval: 20; objects: .clickable"
+                ></a-cursor>
+
+
+
+                <!--<a-entity
+                  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                  animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                  animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                  cursor="fuse: true;" //für mobile Gräte, dass die automatisch nach einer Zeit klicken
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: blue; shader: flat"
+                  raycaster="far: 20; interval: 1000; objects: .clickable">
+                </a-entity>-->
+
+
               </a-camera>
 
 
