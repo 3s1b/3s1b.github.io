@@ -41,7 +41,7 @@
             });
 
 
-          </script>--->
+          </script>-->
 
  <script type="text/javascript">
 
@@ -175,6 +175,9 @@
 
 
               <a-entity rotation="0 -10 0">
+		      <a-entity light="castShadow: true; shadowCameraFar: 50; shadowCameraFov: 90.1; shadowCameraNear: -2.68; shadowCameraTop: 13.81; shadowCameraRight: 15.64; shadowCameraBottom: -12.16; shadowCameraLeft: -14.75; shadowCameraVisible: false" position="1 5 1"></a-entity>
+		      <a-gltf-model src="tree.gltf" shadow="receive: false"></a-gltf-model>
+		      <a-entity light="type: ambient; color: #CCC"></a-entity>
 
                 <a-sphere
                 class="clickable"
@@ -190,6 +193,7 @@
                   animation__color="startEvents: mouseenter;"
                   animation__scale2="startEvents: mouseleave;"
                   animation__colorb="startEvents: mouseleave;"
+		  shadow=""
                 ></a-sphere>
 
                 <a-sphere
@@ -206,6 +210,7 @@
                   animation__color2="startEvents: mouseenter;"
                   animation__scale2.2="startEvents: mouseleave;"
                   animation__colorb="startEvents: mouseleave;"
+		  shadow=""
                 ></a-sphere>
 
                 <a-sphere
@@ -222,6 +227,7 @@
                   animation__color3="startEvents: mouseenter;"
                   animation__scale2.3="startEvents: mouseleave;"
                   animation__colorb="startEvents: mouseleave;"
+		  shadow=""
                 ></a-sphere>
 
                 <a-sphere
@@ -238,6 +244,7 @@
                   animation__color4="startEvents: mouseenter;"
                   animation__scale2.4="startEvents: mouseleave;"
                   animation__colorb="startEvents: mouseleave;"
+		  shadow=""
                 ></a-sphere>
 
               </a-entity>
@@ -269,7 +276,8 @@
               <!-- SKY -->
               <a-sky id="skyColor" color="#000" opacity="0.8"  radius="14" ></a-sky>
               <a-sky src="background.jpeg" radius="15" ></a-sky>
-              <a-plane hoehe color="#999" height="30" width="30" rotation="-90 0 0"></a-plane>
+              <a-plane hoehe color="#999" height="30" width="30" rotation="-90 0 0" shadow="receive: true"></a-plane>
+              <a-plane hoehe color="#efefef" height="30" width="30" rotation="-90 0 0" shadow="receive: true"></a-plane>
             </a-scene>
 
 
