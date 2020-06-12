@@ -57,7 +57,9 @@
               let hoehe4K = document.querySelector('#blueBall').object3D.position.y;
 
 
-            /*if (hoehe1K>=2 && hoehe2K>=2 && hoehe3K>=2 && hoehe4K>=2){
+
+
+            if (hoehe1K>=2 && hoehe2K>=2 && hoehe3K>=2 && hoehe4K>=2){
               let a = hoehe1K;
               let b = hoehe2K;
               let c = hoehe3K;
@@ -65,18 +67,18 @@
 
 
               if(a > Math.max(b,c,d)){
-                document.querySelector('#sky').setAttribute('color', '#ffb800');
+                document.querySelector('#skyColor').setAttribute('color', '#A5F4CD');
               } else if (b > Math.max(a,c,d)){
-                document.querySelector('#sky').setAttribute('color', '#ff3300');
+                document.querySelector('#skyColor').setAttribute('color', '#DCA1C1');
               } else if (c > Math.max(a,b,d)){
-                document.querySelector('#sky').setAttribute('color', '#33cc33');
+                document.querySelector('#skyColor').setAttribute('color', '#4814CC');
               } else if (d > Math.max(a,b,c)){
-                document.querySelector('#sky').setAttribute('color', '#0066ff');
+                document.querySelector('#skyColor').setAttribute('color', '#FF582C');
               }
 
 
 
-            }*/
+            }
 
 
 
@@ -89,11 +91,11 @@
           </head>
 
           <body>
-            <a-scene fog="type: exponential; color: #333; density: 0.1">
+            <a-scene id="mainScene" fog="type: linear; far:20; color: #ebebeb6;">
 
               <a-mixin
                 id="changeColorback"
-                animation__colorb="property: color; to: #aaaaaa; dur: 7000; easing: linear; loop: false"
+                animation__colorb="property: color; to: #eee; dur: 7000; easing: linear; loop: false"
               ></a-mixin>
 
 
@@ -109,7 +111,7 @@
 
               <a-mixin
                 id="changeColor"
-                animation__color="property: color; to: #ffb800; dur: 2000; easing: linear; loop: false"
+                animation__color="property: color; to: #A5F4CD; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
 
               <!-- Animationen zweite Kugel-->
@@ -124,7 +126,7 @@
 
               <a-mixin
                 id="changeColor2"
-                animation__color2="property: color; to: #ff3300; dur: 2000; easing: linear; loop: false"
+                animation__color2="property: color; to: #DCA1C1; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
 
               <!-- Animationen dritte Kugel-->
@@ -139,7 +141,7 @@
 
               <a-mixin
                 id="changeColor3"
-                animation__color3="property: color; to: #33cc33; dur: 2000; easing: linear; loop: false"
+                animation__color3="property: color; to: #4814CC; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
 
               <!-- Animationen vierte Kugel-->
@@ -154,7 +156,7 @@
 
               <a-mixin
                 id="changeColor4"
-                animation__color4="property: color; to: #0066ff; dur: 2000; easing: linear; loop: false"
+                animation__color4="property: color; to: #FF582C; dur: 2000; easing: linear; loop: false"
               ></a-mixin>
 
 
@@ -164,7 +166,7 @@
                 <a-sphere
                   steigen-fallen
                   id="yellowBall"
-                  color="#aaaaaa"
+                  color="#eee"
                   opacity="1"
                   position="0 0.8 -5"
                   radius="0.8"
@@ -179,7 +181,7 @@
                 <a-sphere
                   steigen-fallen
                   id="redBall"
-                  color="#aaaaaa"
+                  color="#eee"
                   opacity="1"
                   position="10 0.8 -3"
                   radius="0.8"
@@ -194,7 +196,7 @@
                 <a-sphere
                   steigen-fallen
                   id="greenBall"
-                  color="#aaaaaa"
+                  color="#eee"
                   opacity="1"
                   position="-4 0.8 3"
                   radius="0.8"
@@ -209,7 +211,7 @@
                 <a-sphere
                   steigen-fallen
                   id="blueBall"
-                  color="#aaaaaa"
+                  color="#eee"
                   opacity="1"
                   position="-8 0.8 -1.5"
                   radius="0.8"
@@ -230,8 +232,9 @@
 
 
               <!-- SKY -->
+              <a-sky id="skyColor" color="#000" opacity="0.8"  radius="14" ></a-sky>
               <a-sky src="background.jpeg" radius="15" ></a-sky>
-              <a-plane hoehe color="#efefef" height="30" width="30" rotation="-90 0 0"></a-plane>
+              <a-plane hoehe color="#aaa" height="30" width="30" rotation="-90 0 0"></a-plane>
             </a-scene>
 
 
